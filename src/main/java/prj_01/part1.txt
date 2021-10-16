@@ -1,0 +1,35 @@
+// Carlos Leyva Capote carlos.leyva@upr.edu
+__________________________________
+Output:
+
+Starting Program...
+Creating Thread 1
+Creating Thread 2
+Creating Thread 3
+Creating Thread 4
+Creating Thread 5
+Running Thread... This is Thread 0
+Running Thread... This is Thread 1
+Running Thread... This is Thread 2
+Main Finished ... Bye Bye
+Running Thread... This is Thread 4
+Running Thread... This is Thread 3
+__________________________________
+
+Q: What can you observe from the printouts of the threads on the terminal?
+A: The program first prints: "Starting Program...". This means that it successfully initialized
+termination_limit, no_threads, and project_step. 
+It also updated these values in the case command line arguments were provided.
+From there, it creates the RoundRobinCLL object, then the ThreadRunnable object containing the RoundRobinCLL object (set to null for part 1).
+Then, it creates the Threads object containing an ArrayList of created Thread objects each containing ThreadRunnable object.
+While creating the Thread objects held in the ArrayList, the program prints "Creating Thread #".
+In this example it creates threads 1 through 5, since no_threads was initialized to 5.
+After creating the Thread objects, the RRS iterates over each Thread in the threads ArrayList contained in the Threads object 
+and creates the actual threads of execution (using .start()) meant to call all of the Threads' ThreadRunnable .run() method in parallel.
+When each of Threads' ThreadRunnable .run() method is executed, it prints "Running Thread... This is Thread #" 
+and since the RoundRobinCLL object is set to null it exits the method there.
+However, at the same time all of the Threads' ThreadRunnable .run() method are being executed, the main method continues
+printing "Main Finished ... Bye Bye" sometimes before all the .run() method calls are executed.
+One can notice a tendency in the running threads being in order, although the temporal difference of execution is, for all intents and purposes,
+negligible, yet perceivable by the order of the print outputs.
+
